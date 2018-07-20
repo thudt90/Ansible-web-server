@@ -1,0 +1,6 @@
+---
+
+- name: Update
+  apt:
+    update_cache: yes
+# tasks file for create_user

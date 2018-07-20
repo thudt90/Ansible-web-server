@@ -1,0 +1,13 @@
+---
+
+- name: install python-pip
+  apt:
+    name: python-pip
+    state: present
+
+- name: install pydf
+  pip:
+    name: pydf
+    state: present
+
+# tasks file for create_user
