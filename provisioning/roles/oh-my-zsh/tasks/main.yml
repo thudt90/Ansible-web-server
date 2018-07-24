@@ -4,24 +4,32 @@
   git:
     repo: 'https://github.com/robbyrussell/oh-my-zsh'
     dest: ~/.oh-my-zsh
+    update: no
 
 # tasks file for create_user
 - name: change file .zshrc
   copy:
     src: ~/.oh-my-zsh/templates/zshrc.zsh-template
     dest: ~/.zshrc
+    force: no
 
 - name: zsh-autosuggestions
   git:
-    repo=https://github.com/zsh-users/zsh-autosuggestions
-    dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+    dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+    update: no
 
-- replace:
+- name: replace zshrc
+  lineinfile:
     path: ~/.zshrc
-    regexp: '^  git'
-    replace: '^  git zsh-autosuggestions'
+    # ^ is start of line, $ is end of line
+    regexp: '^  git$'
+    line: '  git zsh-autosuggestions'
+    backrefs: yes
 
-- replace:
+- name: replace color
+  lineinfile:
     path: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     regexp: 'fg=8'
-    replace: 'fg=blue'
+    line: 'fg=blue'
+    backrefs: yes

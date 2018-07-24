@@ -3,8 +3,8 @@
 - hosts: all
   roles:
     - base
-    - htop
+    # - htop
     - pydf
-    - tmux
+    # - tmux
     - zsh
     - oh-my-zsh
