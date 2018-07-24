@@ -20,3 +20,8 @@
     path: ~/.zshrc
     regexp: '^  git'
     replace: '^  git zsh-autosuggestions'
+
+- replace:
+    path: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    regexp: 'fg=8'
+    replace: 'fg=blue'
