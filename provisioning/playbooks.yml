@@ -1,10 +1,10 @@
 ---
 
 - hosts: all
-  become: true
-  vars:
-    packages: [base,htop]
   roles:
     - base
     - htop
     - pydf
+    - tmux
+    - zsh
+    - oh-my-zsh

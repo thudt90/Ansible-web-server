@@ -1,0 +1,22 @@
+---
+
+- name: clone oh-my-zsh
+  git:
+    repo: 'https://github.com/robbyrussell/oh-my-zsh'
+    dest: ~/.oh-my-zsh
+
+# tasks file for create_user
+- name: change file .zshrc
+  copy:
+    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest: ~/.zshrc
+
+- name: zsh-autosuggestions
+  git:
+    repo=https://github.com/zsh-users/zsh-autosuggestions
+    dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- replace:
+    path: ~/.zshrc
+    regexp: '^  git'
+    replace: '^  git zsh-autosuggestions'

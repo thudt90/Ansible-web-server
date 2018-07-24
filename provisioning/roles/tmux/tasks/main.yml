@@ -1,9 +1,8 @@
 ---
 
-- name: install htop
-  become: true
+- name: install tmux
   apt:
-    name: htop
+    name: tmux
     state: present
 
 # tasks file for create_user

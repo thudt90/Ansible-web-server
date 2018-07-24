@@ -1,7 +1,9 @@
 ---
 
-- name: Update
+- name: install zsh
   become: true
   apt:
-    update_cache: yes
+    name: zsh
+    state: present
+
 # tasks file for create_user
