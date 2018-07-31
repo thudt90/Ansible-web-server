@@ -1,6 +1,7 @@
 ---
 
 - name: clone oh-my-zsh
+  become: no
   git:
     repo: 'https://github.com/robbyrussell/oh-my-zsh'
     dest: ~/.oh-my-zsh
@@ -8,18 +9,21 @@
 
 # tasks file for create_user
 - name: change file .zshrc
+  become: no
   copy:
     src: ~/.oh-my-zsh/templates/zshrc.zsh-template
     dest: ~/.zshrc
     force: no
 
 - name: zsh-autosuggestions
+  become: no
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions'
     dest: '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
     update: no
 
 - name: replace zshrc
+  become: no
   lineinfile:
     path: ~/.zshrc
     # ^ is start of line, $ is end of line
@@ -28,6 +32,7 @@
     backrefs: yes
 
 - name: replace color
+  become: no
   lineinfile:
     path: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     regexp: 'fg=8'

@@ -1,0 +1,46 @@
+---
+# tasks file for mysql
+
+- name: Install mysql
+  # become: yes
+  apt: name={{ item }}
+  with_items:
+    - python-selinux
+    - mysql-server
+    - python-mysqldb
+
+# Read more https://github.com/bennojoy/mysql/blob/9a8fe58d227f1bf9798a315d89f6af7984edfeb6/tasks/main.yml
+
+# - name: Generate new root password
+#   # become: yes
+#   command: openssl rand -hex 7
+#   register: mysql_new_root_pass
+
+# - name: Output new root password
+#   debug:
+#     msg: "New root password is {{mysql_new_root_pass.stdout}}"
+
+- name: Remove anonymous users
+  mysql_user:
+    name: ""
+    state: absent
+
+- name: Remove test database
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Update root password
+  mysql_user:
+    name: root
+    password: thu123456
+
+- name: Create my.cnf
+  template:
+    src: ../files/my.cnf
+    dest: /root/.my.cnf
+    force: no
+# - name: Update root password
+#   mysql_user:
+#     name: root
+#     password: thu123456
